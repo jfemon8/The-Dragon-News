@@ -1,11 +1,14 @@
-import React from 'react';
+import React from "react";
+import NavMenu from "../components/NavMenu/NavMenu";
+import { Outlet } from "react-router";
 
 const Root = () => {
-    return (
-        <div>
-            <h1>This is root page!!!</h1>
-        </div>
-    );
+  return (
+    <div className="container mx-auto bg-white text-black">
+      <NavMenu></NavMenu>
+      <Outlet></Outlet>
+    </div>
+  );
 };
 
 export default Root;
