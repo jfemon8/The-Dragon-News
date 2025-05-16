@@ -3,8 +3,6 @@ import Loader from "../../components/Loader/Loader";
 const News = lazy(() => import("../../components/News/News"));
 
 const Main = ({ filteredNews }) => {
-  console.log(filteredNews);
-
   return (
     <div>
       <h1 className="font-semibold text-xl text-[#403F3F] mb-5">

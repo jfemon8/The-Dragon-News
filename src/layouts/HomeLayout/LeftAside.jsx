@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router";
+import TrendingNews from "../../components/TrendingNews/TrendingNews";
 
 const LeftAside = () => {
   const [categories, setCategories] = useState([]);
@@ -30,6 +31,8 @@ const LeftAside = () => {
           </NavLink>
         ))}
       </div>
+
+      <TrendingNews></TrendingNews>
     </div>
   );
 };
