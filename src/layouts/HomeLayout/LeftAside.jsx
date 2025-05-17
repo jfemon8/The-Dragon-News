@@ -16,7 +16,7 @@ const LeftAside = () => {
       <h1 className="font-semibold text-xl text-[#403F3F] mb-5">
         All Category
       </h1>
-      <div className="flex flex-col gap-4 font-medium text-xl">
+      <div className="flex flex-col gap-4 font-medium xl:text-xl">
         {categories.map((category) => (
           <NavLink
             key={category.id}

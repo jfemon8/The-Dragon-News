@@ -7,16 +7,19 @@ const SingleTrendingNews = ({ news }) => {
   return (
     <div className="mb-4">
       <img className="rounded-md" src={thumbnail_url} alt="Thumbnail" />
-      <h1 className="my-5 font-semibold text-xl text-[#403F3F]">{title}</h1>
+      <h1 className="my-5 font-semibold xl:text-xl text-[#403F3F]">{title}</h1>
       <div className="flex gap-2 justify-between items-center font-medium">
         <div className="text-[#403F3F] flex gap-1 flex-wrap items-center max-w-1/2">
           {tags.map((tag, index) => (
-            <p className="border border-[#9F9F9F] rounded-sm p-1" key={index}>
+            <p
+              className="border border-[#9F9F9F] rounded-sm p-1 text-xs xl:text-base"
+              key={index}
+            >
               {tag}
             </p>
           ))}
         </div>
-        <div className="flex gap-1 items-center text-[#9F9F9F]">
+        <div className="flex gap-1 items-center text-[#9F9F9F] text-xs xl:text-base">
           <CiCalendar size={24} />
           <p>
             {new Date(author.published_date).toLocaleDateString("en-US", {
