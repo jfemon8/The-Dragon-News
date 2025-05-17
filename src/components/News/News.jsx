@@ -6,7 +6,8 @@ import { IoMdEye } from "react-icons/io";
 import { Link } from "react-router";
 
 const News = ({ news }) => {
-  const { author, title, thumbnail_url, details, rating, total_view } = news;
+  const { id, author, title, thumbnail_url, details, rating, total_view } =
+    news;
 
   const fullStars = Math.floor(rating.number);
   const hasHalfStar = rating.number % 1 >= 0.5;
@@ -43,7 +44,10 @@ const News = ({ news }) => {
         />
         <p className="text-[#706F6F]">
           {details.split(" ").slice(0, 30).join(" ")}...{" "}
-          <Link className="font-semibold bg-gradient-to-r from-[#FF8C47] to-[#F75B5F] bg-clip-text text-transparent">
+          <Link
+            to={`/details/${id}`}
+            className="font-semibold bg-gradient-to-r from-[#FF8C47] to-[#F75B5F] bg-clip-text text-transparent"
+          >
             Read More
           </Link>
         </p>
