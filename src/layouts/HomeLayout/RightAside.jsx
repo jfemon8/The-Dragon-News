@@ -5,7 +5,7 @@ import RightAsideTop from "../../components/RightAsideTop/RightAsideTop";
 
 const RightAside = () => {
   return (
-    <div>
+    <div className="xl:sticky xl:top-0 xl:w-fit">
       <RightAsideTop></RightAsideTop>
 
       <QZone></QZone>

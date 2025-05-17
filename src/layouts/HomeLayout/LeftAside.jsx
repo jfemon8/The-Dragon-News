@@ -12,8 +12,8 @@ const LeftAside = () => {
   }, []);
 
   return (
-    <div>
-      <h1 className="font-semibold text-xl text-[#403F3F] mb-5">
+    <div className="xl:sticky xl:top-0 xl:w-fit">
+      <h1 className="font-semibold xl:text-xl text-[#403F3F] mb-5">
         All Category
       </h1>
       <div className="flex flex-col gap-4 font-medium xl:text-xl">
