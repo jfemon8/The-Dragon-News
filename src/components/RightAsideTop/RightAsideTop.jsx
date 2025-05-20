@@ -3,10 +3,23 @@ import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa6";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const RightAsideTop = () => {
-  const { googleLogIn, setUser, user } = use(AuthContext);
+  const { googleLogIn, setUser, user, githubLogIn } = use(AuthContext);
 
   const handleGoogleLogIn = () => {
     googleLogIn()
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        alert(errorMessage);
+      });
+  };
+
+  const handleGitHubLogIn = () => {
+    githubLogIn()
       .then((result) => {
         const user = result.user;
         setUser(user);
@@ -64,7 +77,10 @@ const RightAsideTop = () => {
           </button>
 
           {/* GitHub */}
-          <button className="btn bg-black text-white border-black w-full flex items-center justify-center gap-1 xl:gap-2">
+          <button
+            onClick={handleGitHubLogIn}
+            className="btn bg-black text-white border-black w-full flex items-center justify-center gap-1 xl:gap-2"
+          >
             <svg
               aria-label="GitHub logo"
               width="16"
