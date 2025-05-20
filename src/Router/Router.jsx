@@ -6,6 +6,7 @@ import AuthLayout from "../layouts/AuthLayout/AuthLayout";
 import Login from "../components/AuthLayout/Login";
 import Register from "../components/AuthLayout/Register";
 import PrivateRouter from "../provider/PrivateRouter";
+import About from "../pages/About";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
         loader: () => fetch("/news.json").then((res) => res.json()),
+      },
+      {
+        path: "/about",
+        Component: About,
       },
     ],
   },
