@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaCircleUser } from "react-icons/fa6";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    logOut()
+      .then(() => {
+        alert("You have logged out!");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div className="mt-5 flex flex-col xl:flex-row items-center justify-between gap-4">
       <div className="hidden xl:block"></div>
@@ -39,10 +52,33 @@ const Navbar = () => {
         </NavLink>
       </div>
       <div className="flex gap-4 items-center">
-        <FaCircleUser size={32} className="cursor-pointer" />
-        <button className="btn bg-[#403F3F] text-white font-semibold text-xl border-[#403F3F] hover:bg-white hover:text-[#403F3F]">
-          Login
-        </button>
+        {user ? (
+          <>
+            {user.photoURL ? (
+              <img
+                className="w-10 h-10 rounded-full"
+                src={user.photoURL}
+                alt="Profile Photo"
+              />
+            ) : (
+              <FaCircleUser size={32} className="cursor-pointer" />
+            )}
+
+            <button
+              onClick={handleLogout}
+              className="btn bg-[#403F3F] text-white font-semibold text-xl border-[#403F3F] hover:bg-white hover:text-[#403F3F]"
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          <Link
+            to={"/auth/login"}
+            className="btn bg-[#403F3F] text-white font-semibold text-xl border-[#403F3F] hover:bg-white hover:text-[#403F3F]"
+          >
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );

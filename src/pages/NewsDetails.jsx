@@ -1,8 +1,9 @@
-import React from "react";
+import React, { use } from "react";
 import { Link, useLoaderData, useParams } from "react-router";
 import { FaArrowLeft } from "react-icons/fa6";
 import RightAsideTop from "../components/RightAsideTop/RightAsideTop";
 import QZone from "../components/QZone/QZone";
+import { AuthContext } from "../provider/AuthProvider";
 
 const NewsDetails = () => {
   const { id } = useParams();
