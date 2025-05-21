@@ -7,6 +7,8 @@ import Login from "../components/AuthLayout/Login";
 import Register from "../components/AuthLayout/Register";
 import PrivateRouter from "../provider/PrivateRouter";
 import About from "../pages/About";
+import Career from "../pages/Career";
+import OpenRoute from "../provider/OpenRoute";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +36,10 @@ const router = createBrowserRouter([
         path: "/about",
         Component: About,
       },
+      {
+        path: "/career",
+        Component: Career,
+      },
     ],
   },
   {
@@ -42,11 +48,19 @@ const router = createBrowserRouter([
     children: [
       {
         path: "login",
-        Component: Login,
+        element: (
+          <OpenRoute>
+            <Login></Login>
+          </OpenRoute>
+        ),
       },
       {
         path: "register",
-        Component: Register,
+        element: (
+          <OpenRoute>
+            <Register></Register>
+          </OpenRoute>
+        ),
       },
     ],
   },

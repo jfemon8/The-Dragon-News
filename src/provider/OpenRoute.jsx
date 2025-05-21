@@ -1,9 +1,9 @@
 import React, { use } from "react";
+import { AuthContext } from "./AuthProvider";
 import { Navigate, useLocation } from "react-router";
 import Loader from "../components/Loader/Loader";
-import { AuthContext } from "./AuthProvider";
 
-const PrivateRouter = ({ children }) => {
+const OpenRoute = ({ children }) => {
   const { user, loading } = use(AuthContext);
 
   const location = useLocation();
@@ -12,11 +12,11 @@ const PrivateRouter = ({ children }) => {
     return <Loader></Loader>;
   }
 
-  if (user) {
+  if (!user) {
     return children;
   }
 
-  return <Navigate state={location.pathname} to={"/auth/login"}></Navigate>;
+  return <Navigate state={location.pathname} to={"/"}></Navigate>;
 };
 
-export default PrivateRouter;
+export default OpenRoute;
