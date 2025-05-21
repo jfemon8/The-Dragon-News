@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { FaCircleUser } from "react-icons/fa6";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -9,10 +10,25 @@ const Navbar = () => {
   const handleLogout = () => {
     logOut()
       .then(() => {
-        alert("You have logged out!");
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Successfully logged out!",
+          showConfirmButton: false,
+          timer: 5000,
+        });
       })
       .catch((error) => {
-        console.log(error);
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        Swal.fire({
+          position: "top-end",
+          icon: "warning",
+          title: `${errorCode}`,
+          text: `${errorMessage}`,
+          showConfirmButton: false,
+          timer: 5000,
+        });
       });
   };
 
@@ -54,15 +70,17 @@ const Navbar = () => {
       <div className="flex gap-4 items-center">
         {user ? (
           <>
-            {user.photoURL ? (
-              <img
-                className="w-10 h-10 rounded-full"
-                src={user.photoURL}
-                alt="Profile Photo"
-              />
-            ) : (
-              <FaCircleUser size={32} className="cursor-pointer" />
-            )}
+            <Link to={"/auth/profile"}>
+              {user.photoURL ? (
+                <img
+                  className="w-10 h-10 rounded-full"
+                  src={user.photoURL}
+                  alt="Profile Photo"
+                />
+              ) : (
+                <FaCircleUser size={32} className="cursor-pointer" />
+              )}
+            </Link>
 
             <button
               onClick={handleLogout}

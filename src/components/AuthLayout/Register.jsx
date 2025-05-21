@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const { createUser, setUser, updateUser } = useContext(AuthContext);
@@ -24,14 +25,28 @@ const Register = () => {
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            alert(errorMessage);
+            Swal.fire({
+              position: "top-end",
+              icon: "warning",
+              title: `${errorCode}`,
+              text: `${errorMessage}`,
+              showConfirmButton: false,
+              timer: 5000,
+            });
           });
         navigate("/");
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        alert(errorMessage);
+        Swal.fire({
+          position: "top-end",
+          icon: "warning",
+          title: `${errorCode}`,
+          text: `${errorMessage}`,
+          showConfirmButton: false,
+          timer: 5000,
+        });
       });
   };
 

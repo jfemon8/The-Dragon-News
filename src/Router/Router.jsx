@@ -9,6 +9,9 @@ import PrivateRouter from "../provider/PrivateRouter";
 import About from "../pages/About";
 import Career from "../pages/Career";
 import OpenRoute from "../provider/OpenRoute";
+import ForgotPassword from "../components/AuthLayout/ForgotPassword";
+import Profile from "../pages/Profile";
+import PageNotFound from "../pages/PageNotFound";
 
 const router = createBrowserRouter([
   {
@@ -43,7 +46,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/auth",
+    path: "/auth/",
     Component: AuthLayout,
     children: [
       {
@@ -62,7 +65,23 @@ const router = createBrowserRouter([
           </OpenRoute>
         ),
       },
+      {
+        path: "forgot-password",
+        Component: ForgotPassword,
+      },
+      {
+        path: "profile",
+        element: (
+          <PrivateRouter>
+            <Profile></Profile>
+          </PrivateRouter>
+        ),
+      },
     ],
+  },
+  {
+    path: "/*",
+    Component: PageNotFound,
   },
 ]);
 

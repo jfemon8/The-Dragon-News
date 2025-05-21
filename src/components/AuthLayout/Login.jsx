@@ -1,6 +1,7 @@
 import React, { use } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const { signInUser, setUser } = use(AuthContext);
@@ -9,6 +10,10 @@ const Login = () => {
 
   const location = useLocation();
 
+  const redirectPath = location.state || "/";
+
+  console.log(redirectPath);
+
   const handleLogin = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -16,12 +21,19 @@ const Login = () => {
     signInUser(email, password)
       .then((userCredential) => {
         setUser(userCredential.user);
-        navigate(`${location.state ? location.state : "/"}`);
+        navigate(redirectPath);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        alert(errorMessage);
+        Swal.fire({
+          position: "top-end",
+          icon: "warning",
+          title: `${errorCode}`,
+          text: `${errorMessage}`,
+          showConfirmButton: false,
+          timer: 5000,
+        });
       });
   };
 
@@ -54,9 +66,12 @@ const Login = () => {
             required
           />
           <div>
-            <a className="link link-hover xl:text-base text-[#FF8C47]">
+            <Link
+              to={"/auth/forgot-password"}
+              className="link link-hover xl:text-base text-[#FF8C47]"
+            >
               Forgot password?
-            </a>
+            </Link>
           </div>
           <button className="btn btn-neutral mt-4 bg-[#403F3F] text-white hover:text-[#403F3F] hover:bg-white">
             Login

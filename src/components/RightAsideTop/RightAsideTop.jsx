@@ -1,6 +1,7 @@
 import React, { use } from "react";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa6";
 import { AuthContext } from "../../provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const RightAsideTop = () => {
   const { googleLogIn, setUser, user, githubLogIn } = use(AuthContext);
@@ -14,7 +15,14 @@ const RightAsideTop = () => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        alert(errorMessage);
+        Swal.fire({
+          position: "top-end",
+          icon: "warning",
+          title: `${errorCode}`,
+          text: `${errorMessage}`,
+          showConfirmButton: false,
+          timer: 5000,
+        });
       });
   };
 
@@ -27,7 +35,14 @@ const RightAsideTop = () => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        alert(errorMessage);
+        Swal.fire({
+          position: "top-end",
+          icon: "warning",
+          title: `${errorCode}`,
+          text: `${errorMessage}`,
+          showConfirmButton: false,
+          timer: 5000,
+        });
       });
   };
 
