@@ -12,8 +12,6 @@ const Login = () => {
 
   const redirectPath = location.state || "/";
 
-  console.log(redirectPath);
-
   const handleLogin = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
